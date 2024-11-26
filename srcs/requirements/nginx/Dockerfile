@@ -4,12 +4,12 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache nginx gettext
 
-COPY ./requirements/nginx/conf/entrypoint.sh /entrypoint.sh
+COPY ./requirements/nginx/conf/entry.sh /entry.sh
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entry.sh
 
 EXPOSE 443
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entry.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
