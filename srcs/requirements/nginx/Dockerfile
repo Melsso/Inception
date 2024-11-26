@@ -1,10 +1,9 @@
 FROM alpine:3.16
 
 # Install Nginx and envsubst (which comes with the gettext package)
-RUN apk update && apk upgrade && apk add --no-cache nginx gettext
+RUN apk update && apk upgrade && apk add --no-cache nginx
 
 # Copy your existing nginx.conf and entrypoint script into the container
-COPY ./requirements/nginx/conf/nginx.conf /etc/nginx/http.d/nginx.conf
 COPY ./requirements/nginx/conf/entry.sh /entry.sh
 
 # Make the entry script executable
