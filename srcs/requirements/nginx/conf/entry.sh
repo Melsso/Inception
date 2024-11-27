@@ -1,6 +1,8 @@
 #!/bin/sh
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout smallem.42.fr.key -out smallem.42.fr.crt -subj "/C=US/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=smallem.42.fr";
+mkdir -p /etc/nginx/ssl/
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${SSL_CERTIFICATE_KEY} -out ${SSL_CERTIFICATE} -subj "/C=US/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=smallem.42.fr";
 mv  ${SSL_CERTIFICATE} /etc/nginx/ssl/;
 mv  ${SSL_CERTIFICATE_KEY} /etc/nginx/ssl/;
 
