@@ -1,5 +1,9 @@
 #!/bin/sh
 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout smallem.42.fr.key -out smallem.42.fr.crt -subj "/C=US/ST=SomeState/L=SomeCity/O=SomeOrganization/CN=smallem.42.fr";
+mv  ${SSL_CERTIFICATE} /etc/nginx/ssl/;
+mv  ${SSL_CERTIFICATE_KEY} /etc/nginx/ssl/;
+
 echo "server {
 	listen			443 ssl;
 	server_name		${SERVER_NAME} www.${SERVER_NAME};
@@ -32,4 +36,4 @@ echo "server {
 }
 " > /etc/nginx/http.d/nginx.conf
 
-exec "$@"
+nginx -g "daemon off;"
